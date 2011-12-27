@@ -66,14 +66,6 @@ class collectd  {
 
 
 
-  file {
-    "/etc/collect.d/graphite-writer.conf":
-      group   => '0',
-      mode    => '644',
-      owner   => '0',
-      require => Package['collectd'],
-      content  => template("collectd/graphite-writer.conf.erb");
-  }
 
   service {"collectd":
     ensure  => present,
