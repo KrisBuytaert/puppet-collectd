@@ -14,6 +14,9 @@
 
 class collectd::graphitewriter ( $graphitehost, $grahpiteport) { 
 
+  notify {"Value Host is ${graphitehost}.":}
+  notify {"Value Port is ${graphiteport}.":}
+
   file { '/usr/local/collectd-plugins/':
     ensure => 'directory', 
     group  => '0',
@@ -41,6 +44,9 @@ class collectd::graphitewriter ( $graphitehost, $grahpiteport) {
    }
 
 }
+
+
+
 class collectd  { 
 
 
