@@ -28,7 +28,7 @@ class collectd::graphitewriter ( $graphitehost, $graphiteport) {
     group  => '0',
     mode   => '644',
     owner  => '0',
-    source => 'puppet:///collectd/collectd-carbon/carbond_writer.py'
+    source => 'puppet:///collectd/collectd-carbon/carbon_writer.py'
 }
 
 
