@@ -22,7 +22,6 @@ class collectd::graphitewriter ( $graphitehost, $graphiteport) {
     group  => '0',
     mode   => '755',
     owner  => '0',
-    type   => 'directory',
 }
   file { '/usr/local/collectd-plugins/carbon_writer.py': 
     ensure => 'file',
