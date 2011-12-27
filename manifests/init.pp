@@ -39,6 +39,7 @@ class collectd::graphitewriter ( $graphitehost, $graphiteport) {
        mode    => '644',
        owner   => '0',
        require => Package['collectd'],
+       notify  => Service['collectd'], 
        content => template("collectd/graphite-writer.conf.erb");
    }
 
