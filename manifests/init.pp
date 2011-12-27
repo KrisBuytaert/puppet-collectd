@@ -67,7 +67,7 @@ class collectd  {
 
 
   service {"collectd":
-    ensure  => present,
+    ensure  => running,
     require => [File['/etc/init.d/collectd'],Package['collectd']];
   }
 }
