@@ -12,7 +12,7 @@
 #
 # [Remember: No empty lines between comments and class definition]
 
-class collectd::graphitewriter ( $graphitehost, $grahpiteport) { 
+class collectd::graphitewriter ( $graphitehost, $graphiteport) { 
 
   notify {"Value Host is ${graphitehost}.":}
   notify {"Value Port is ${graphiteport}.":}
