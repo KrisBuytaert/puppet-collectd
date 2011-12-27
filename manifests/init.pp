@@ -34,7 +34,7 @@ class collectd::graphitewriter ( $graphitehost, $graphiteport) {
 
 
   file {
-     "/etc/collect.d/graphite-writer.conf":
+     "/etc/collectd.d/graphite-writer.conf":
        group   => '0',
        mode    => '644',
        owner   => '0',
