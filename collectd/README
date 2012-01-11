@@ -1,4 +1,0 @@
-collectd
-
-This is a collectd module used to configure collectd with the graphite output writer.
-This is far from a fully functionall and working collectd module.
