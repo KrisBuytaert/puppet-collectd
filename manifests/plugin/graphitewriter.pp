@@ -12,7 +12,7 @@
 #
 # [Remember: No empty lines between comments and class definition]
 
-class collectd::graphitewriter ( $graphitehost, $graphiteport) {
+class collectd::plugin::graphitewriter ( $graphitehost, $graphiteport) {
 
 
   file { '/usr/local/collectd-plugins/':
