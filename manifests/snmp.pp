@@ -1,9 +1,7 @@
-class collectd::snmp{
+class collectd::snmp {
 
-
-  package {
-    "collectd-snmp":
-      ensure => present;
+  package { 'collectd-snmp':
+    ensure => 'present',
   }
 
 }
