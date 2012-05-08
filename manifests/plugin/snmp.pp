@@ -1,4 +1,4 @@
-class collectd::snmp{
+class collectd::plugin::snmp{
 
 
   package {
