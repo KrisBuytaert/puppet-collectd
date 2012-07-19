@@ -51,7 +51,12 @@ class collectd  {
 
 
   package {"collectd":
-    ensure => present;
+    ensure => present,
+    name   => $::operatingsystem ? {
+      /(?i:centos|redhat|fedora)/ => "collectd.$::hardwaremodel",
+      default                     => 'collectd',
+    },
+    alias  => 'collectd',
   }
 
   # Required with a patch to include they Python LDLIB path as documented 
