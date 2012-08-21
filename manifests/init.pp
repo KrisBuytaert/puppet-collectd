@@ -12,18 +12,18 @@
 #
 # [Remember: No empty lines between comments and class definition]
 
-class collectd::graphitewriter ( $graphitehost, $graphiteport) { 
+class collectd::graphitewriter ( $graphitehost, $graphiteport) {
 
   notify {"Value Host is ${graphitehost}.":}
   notify {"Value Port is ${graphiteport}.":}
 
   file { '/usr/local/collectd-plugins/':
-    ensure => 'directory', 
+    ensure => 'directory',
     group  => '0',
     mode   => '755',
     owner  => '0',
 }
-  file { '/usr/local/collectd-plugins/carbon_writer.py': 
+  file { '/usr/local/collectd-plugins/carbon_writer.py':
     ensure => 'file',
     group  => '0',
     mode   => '644',
@@ -39,7 +39,7 @@ class collectd::graphitewriter ( $graphitehost, $graphiteport) {
        mode    => '644',
        owner   => '0',
        require => Package['collectd'],
-       notify  => Service['collectd'], 
+       notify  => Service['collectd'],
        content => template("collectd/graphite-writer.conf.erb");
    }
 
@@ -47,7 +47,7 @@ class collectd::graphitewriter ( $graphitehost, $graphiteport) {
 
 
 
-class collectd  { 
+class collectd  {
 
 
   package {"collectd":
@@ -59,7 +59,7 @@ class collectd  {
     alias  => 'collectd',
   }
 
-  # Required with a patch to include they Python LDLIB path as documented 
+  # Required with a patch to include they Python LDLIB path as documented
   # on  https://github.com/indygreg/collectd-carbon
   file {
     "/etc/init.d/collectd":
