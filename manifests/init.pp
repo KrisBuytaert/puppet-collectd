@@ -16,7 +16,7 @@ class collectd  {
   package {"collectd":
     ensure => present,
     name   => $::operatingsystem ? {
-      /(?i:centos|redhat|fedora)/ => "collectd.$::hardwaremodel",
+      /(?i:centos|redhat|fedora)/ => "collectd.$::architecture",
       default                     => 'collectd',
     },
     alias  => 'collectd',
