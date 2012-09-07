@@ -31,7 +31,8 @@ class collectd  {
         group  => '0',
         mode   => '755',
         owner  => '0',
-        source => "puppet:///collectd/collectd";
+        source => "puppet:///collectd/collectd",
+        before => Service['collectd'];
     }
   }
 
@@ -39,6 +40,6 @@ class collectd  {
 
   service {"collectd":
     ensure  => running,
-    require => [File['/etc/init.d/collectd'],Package['collectd']];
+    require => Package['collectd'];
   }
 }
