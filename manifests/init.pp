@@ -22,16 +22,18 @@ class collectd  {
     alias  => 'collectd',
   }
 
-  # Required with a patch to include they Python LDLIB path as documented
-  # on  https://github.com/indygreg/collectd-carbon
-  file {
-    "/etc/init.d/collectd":
-      group  => '0',
-      mode   => '755',
-      owner  => '0',
-      source => "puppet:///collectd/collectd";
-  }
+  if (($::opratingsystem == 'RHEL' or $::opratingsystem == 'CentOS') and $::lsbmajdistrelease == '5') {
 
+    # Required with a patch to include they Python LDLIB path as documented
+    # on  https://github.com/indygreg/collectd-carbon
+    file {
+      "/etc/init.d/collectd":
+        group  => '0',
+        mode   => '755',
+        owner  => '0',
+        source => "puppet:///collectd/collectd";
+    }
+  }
 
 
 
