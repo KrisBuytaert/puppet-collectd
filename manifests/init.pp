@@ -36,7 +36,12 @@ class collectd  {
     }
   }
 
-
+  file{'/etc/collectd.d':
+    ensure => 'directory',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+  }
 
   service {"collectd":
     ensure  => running,
