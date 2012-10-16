@@ -36,6 +36,21 @@ class collectd  {
     }
   }
 
+  if ($::opratingsystem == 'Debian' or $::opratingsystem == 'Ubuntu') {
+    # We need a config file that is actually including "/etc/collectd.d" files
+    # This has been reported in debian, see Debian BTS #690668
+    file {
+      "/etc/collectd/collectd.conf":
+        ensure  => present,
+        group   => 'root',
+        mode    => '0644',
+        owner   => 'root',
+        source  => "puppet:///collectd/collectd.conf.Debian",
+        before  => Service['collectd'],
+        require => Package['collectd'],
+    }
+  }
+
   file{'/etc/collectd.d':
     ensure => 'directory',
     owner  => 'root',
