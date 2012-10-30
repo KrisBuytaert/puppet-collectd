@@ -7,7 +7,7 @@ class collectd::plugin::apache{
   if ($::operatingsystem == 'Debian' or $::operatingsystem == 'Ubuntu')
   {
     file { '/etc/collectd.d/apache.conf':
-      content => template('collectd/plugin/apache.conf'),
+      content => template('collectd/apache.conf.erb'),
       group   => '0',
       mode    => '0644',
       owner   => '0',
