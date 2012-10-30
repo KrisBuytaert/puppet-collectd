@@ -45,7 +45,7 @@ class collectd  {
         group   => 'root',
         mode    => '0644',
         owner   => 'root',
-        source  => 'puppet:///collectd/collectd.conf.Debian',
+        content => template('collectd/collectd.conf.Debian'),
         before  => Service['collectd'],
         require => Package['collectd'],
     }
