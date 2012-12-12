@@ -1,3 +1,0 @@
-[submodule "files/collectd-carbon"]
-	path = files/collectd-carbon
-	url = https://github.com/indygreg/collectd-carbon.git
