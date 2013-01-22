@@ -12,15 +12,17 @@
 #
 # [Remember: No empty lines between comments and class definition]
 class collectd (
-  $purge => true,
-) {
+  $pkgname        = $::collectd::params::pkgname,
+  $config_file    = $::collectd::params::config_file,
+  $config_dir     = $::collectd::params::config_dir,
+  $purge          = $::collectd::params::purge,
+  $service_name   = $::collectd::params::service_name,
+  $service_ensure = $::collectd::params::service_ensure,
+  $service_enable = $::collectd::params::service_enable,
+) inherits ::collectd::params {
 
-  package{'collectd':
-    ensure => present,
-    name   => $::operatingsystem ? {
-      /(?i:centos|redhat|fedora)/ => "collectd.$::architecture",
-      default                     => 'collectd',
-    },
+  package{$pkgname:
+    ensure => 'present',
     alias  => 'collectd',
   }
 
@@ -33,25 +35,25 @@ class collectd (
       mode   => '0755',
       owner  => '0',
       source => 'puppet:///collectd/collectd',
-      before => Service['collectd'],
+      before => Service[$service_name],
     }
   }
 
   if ($::operatingsystem =~ /(?i:Debian|Ubuntu)/ ) {
     # We need a config file that is actually including "/etc/collectd.d" files
     # This has been reported in debian, see Debian BTS #690668
-    file{'/etc/collectd/collectd.conf':
+    file{$config_file:
       ensure  => present,
       group   => 'root',
-      mode    => '0644',
       owner   => 'root',
+      mode    => '0644',
       content => template('collectd/collectd.conf.Debian'),
-      before  => Service['collectd'],
-      require => Package['collectd'],
+      before  => Service[$service_name],
+      require => Package[$pkgname],
     }
   }
 
-  file{'/etc/collectd.d':
+  file{$config_dir:
     ensure    => 'directory',
     owner     => 'root',
     group     => 'root',
@@ -60,9 +62,10 @@ class collectd (
     purge     => $purge,
   }
 
-  service{'collectd':
-    ensure  => running,
-    require => Package['collectd'],
+  service{$service_name:
+    ensure  => $service_ensure,
+    enable  => $service_enable,
+    require => Package[$pkgname],
   }
 
 }
