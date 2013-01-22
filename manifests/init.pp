@@ -54,12 +54,12 @@ class collectd (
   }
 
   file{$config_dir:
-    ensure    => 'directory',
-    owner     => 'root',
-    group     => 'root',
-    mode      => '0755',
-    recursive => $purge,
-    purge     => $purge,
+    ensure  => 'directory',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    recurse => $purge,
+    purge   => $purge,
   }
 
   service{$service_name:
