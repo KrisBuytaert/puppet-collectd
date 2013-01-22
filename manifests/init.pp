@@ -11,7 +11,9 @@
 # Sample Usage:
 #
 # [Remember: No empty lines between comments and class definition]
-class collectd  {
+class collectd (
+  $purge => true,
+) {
 
   package {'collectd':
     ensure => present,
@@ -52,10 +54,12 @@ class collectd  {
   }
 
   file{'/etc/collectd.d':
-    ensure => 'directory',
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
+    ensure    => 'directory',
+    owner     => 'root',
+    group     => 'root',
+    mode      => '0755',
+    recursive => $purge,
+    purge     => $purge,
   }
 
   service {'collectd':
