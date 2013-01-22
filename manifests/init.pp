@@ -15,7 +15,7 @@ class collectd (
   $purge => true,
 ) {
 
-  package {'collectd':
+  package{'collectd':
     ensure => present,
     name   => $::operatingsystem ? {
       /(?i:centos|redhat|fedora)/ => "collectd.$::architecture",
@@ -24,32 +24,30 @@ class collectd (
     alias  => 'collectd',
   }
 
-  if (($::operatingsystem == 'RHEL' or $::operatingsystem == 'CentOS') and $::lsbmajdistrelease == '5') {
+  if (($::operatingsystem =~ /(?i:RHEL|CentOS)/ ) and $::lsbmajdistrelease == '5') {
 
     # Required with a patch to include they Python LDLIB path as documented
     # on  https://github.com/indygreg/collectd-carbon
-    file {
-      '/etc/init.d/collectd':
-        group  => '0',
-        mode   => '0755',
-        owner  => '0',
-        source => 'puppet:///collectd/collectd',
-        before => Service['collectd'];
+    file{'/etc/init.d/collectd':
+      group  => '0',
+      mode   => '0755',
+      owner  => '0',
+      source => 'puppet:///collectd/collectd',
+      before => Service['collectd'],
     }
   }
 
-  if ($::operatingsystem == 'Debian' or $::operatingsystem == 'Ubuntu') {
+  if ($::operatingsystem =~ /(?i:Debian|Ubuntu)/ ) {
     # We need a config file that is actually including "/etc/collectd.d" files
     # This has been reported in debian, see Debian BTS #690668
-    file {
-      '/etc/collectd/collectd.conf':
-        ensure  => present,
-        group   => 'root',
-        mode    => '0644',
-        owner   => 'root',
-        content => template('collectd/collectd.conf.Debian'),
-        before  => Service['collectd'],
-        require => Package['collectd'],
+    file{'/etc/collectd/collectd.conf':
+      ensure  => present,
+      group   => 'root',
+      mode    => '0644',
+      owner   => 'root',
+      content => template('collectd/collectd.conf.Debian'),
+      before  => Service['collectd'],
+      require => Package['collectd'],
     }
   }
 
@@ -62,8 +60,9 @@ class collectd (
     purge     => $purge,
   }
 
-  service {'collectd':
+  service{'collectd':
     ensure  => running,
-    require => Package['collectd'];
+    require => Package['collectd'],
   }
+
 }
