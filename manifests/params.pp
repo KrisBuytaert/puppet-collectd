@@ -1,4 +1,4 @@
-class collect::params (
+class collectd::params (
   $pkgname        = $::operatingsystem ? {
     /(?i:centos|redhat|fedora)/ => "collectd.$::architecture",
     default                     => 'collectd',

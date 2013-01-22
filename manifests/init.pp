@@ -19,7 +19,7 @@ class collectd (
   $service_name   = $::collectd::params::service_name,
   $service_ensure = $::collectd::params::service_ensure,
   $service_enable = $::collectd::params::service_enable,
-) inherits ::collect::params {
+) inherits ::collectd::params {
 
   package{$pkgname:
     ensure => 'present',
