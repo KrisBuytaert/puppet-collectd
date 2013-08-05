@@ -34,7 +34,7 @@ class collectd (
       group  => '0',
       mode   => '0755',
       owner  => '0',
-      source => 'puppet:///collectd/collectd',
+      source => 'puppet:///modules/collectd/collectd',
       before => Service[$service_name],
     }
   }
