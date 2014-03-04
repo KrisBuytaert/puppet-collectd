@@ -1,0 +1,13 @@
+LoadPlugin write_riemann
+
+<Plugin write_riemann>
+      <Node "<%= @hostname %>">
+       Host "<%= @riemannhost %>"
+       Port 5555
+       Protocol UDP
+       StoreRates true
+       AlwaysAppendDS false
+       </Node>
+       Tag "foobar"
+</Plugin>
+
