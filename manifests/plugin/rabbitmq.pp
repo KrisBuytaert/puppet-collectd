@@ -9,7 +9,7 @@ class collectd::plugin::rabbitmq{
 
   file { '/usr/local/collectd-plugins/Collectd/Plugins/RabbitMQ.pm':
     source => 'puppet:///modules/collectd/RabbitMQ.pm',
-    mode   => '0755',
+    mode   => '0644',
   }
 
   file_line { 'cpusummaryline':
