@@ -1,0 +1,17 @@
+<LoadPlugin "perl">
+  Globals true
+</LoadPlugin>
+
+<Plugin "perl">
+  IncludeDir "/usr/local/collectd-plugins"
+  BaseName "Collectd::Plugins"
+  LoadPlugin "RabbitMQ"
+
+  <Plugin "RabbitMQ">
+    Username "{{ collectd_rabbitmq_user }}"
+    Password "{{ collectd_rabbitmq_password }}"
+    Realm "RabbitMQ Management"
+    Host "localhost"
+    Port "15672"
+  </Plugin>
+</Plugin>
