@@ -7,12 +7,6 @@ class collectd::plugin::rabbitmq{
     ensure => 'present',
   }
 
-  file { '/usr/local/collectd-plugins/':
-    ensure => 'directory',
-    group  => '0',
-    mode   => '0755',
-    owner  => '0',
-  }
   file { '/usr/local/collectd-plugins/Collectd/':
     ensure => 'directory',
     group  => '0',
