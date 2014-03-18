@@ -12,17 +12,19 @@ class collectd::plugin::rabbitmq{
     group  => '0',
     mode   => '0755',
     owner  => '0',
-
+    require => File['/usr/local/collectd-plugins/'],
   }
-  file { '/usr/local/collectd-plugins/Collectd/Plugind/':
+  file { '/usr/local/collectd-plugins/Collectd/Plugins/':
     ensure => 'directory',
     group  => '0',
     mode   => '0755',
     owner  => '0',
+    require => File['/usr/local/collectd-plugins/Collectd'],
   }
   file { '/usr/local/collectd-plugins/Collectd/Plugins/RabbitMQ.pm':
     source => 'puppet:///modules/collectd/RabbitMQ.pm',
     mode   => '0644',
+    require => File['/usr/local/collectd-plugins/Collectd/Plugins'],
   }
 
   file_line { 'cpusummaryline':
