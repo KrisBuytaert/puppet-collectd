@@ -3,7 +3,7 @@ class collectd::plugin::rabbitmq{
   $collectd_rabbitmq_user  = hiera('collectd_rabbitmq_user')
   $collectd_rabbitmq_password  = hiera('collectd_rabbitmq_password')
 
-  package { 'perl-Collectd':
+  package { 'collectd-perl':
     ensure => 'present',
   }
 
