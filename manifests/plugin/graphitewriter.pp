@@ -14,8 +14,11 @@
 
 class collectd::plugin::graphitewriter ( $graphitehost, $graphiteport) {
 
-  package { 'collectd-python':
-    ensure => 'present',
+  # on Debian and co this stuff is in collectd-core
+  if $::operatingsystem =~ /(RedHat|CentOS|Scientific|OEL|Amazon)/ {
+    package { 'collectd-python':
+      ensure => 'present',
+    }
   }
 
   file { '/usr/local/collectd-plugins/':
