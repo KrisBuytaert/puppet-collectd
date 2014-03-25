@@ -14,6 +14,9 @@
 
 class collectd::plugin::graphitewriter ( $graphitehost, $graphiteport) {
 
+  package { 'collectd-python':
+    ensure => 'present',
+  }
 
   file { '/usr/local/collectd-plugins/':
     ensure => 'directory',
