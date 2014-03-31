@@ -117,6 +117,8 @@ sub my_read
   $vl->{'type'} = 'rabbitmq';
 
   foreach my $result (@{$ref}) {
+    next unless $result->{'durable'};
+
     $vl->{'plugin_instance'} = $result->{'vhost'};
     $vl->{'type_instance'} = $result->{'name'};
     $vl->{'plugin_instance'} =~ s#[/-]#_#g;
