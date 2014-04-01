@@ -1,5 +1,5 @@
 class collectd::plugin::apache(
-  $statusurl = 'http://localhost:8000/mod_status?auto',
+  $statusurl = 'http://localhost:8008/mod_status?auto',
   $managelocalvhost = 'no',
 )
 {
@@ -20,8 +20,8 @@ class collectd::plugin::apache(
   if ($managelocalvhost == 'true')
   {
 
-    file { '/etc/httpd/conf.d/status_8000.conf':
-      source => 'puppet:///modules/collectd/plugin/status_8000.conf',
+    file { '/etc/httpd/conf.d/status_8008.conf':
+      source => 'puppet:///modules/collectd/plugin/status_8008.conf',
       group  => '0',
       mode   => '0644',
       owner  => '0',
