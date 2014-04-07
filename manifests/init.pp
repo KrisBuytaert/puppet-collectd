@@ -12,18 +12,17 @@
 #
 # [Remember: No empty lines between comments and class definition]
 class collectd (
-  $pkgname        = $::collectd::params::pkgname,
-  $pkg_ensure     = $::collectd::params::pkg_ensure,
-  $config_file    = $::collectd::params::config_file,
-  $config_dir     = $::collectd::params::config_dir,
-  $purge          = $::collectd::params::purge,
-  $service_name   = $::collectd::params::service_name,
-  $service_ensure = $::collectd::params::service_ensure,
-  $service_enable = $::collectd::params::service_enable,
+  $pkgname              = $::collectd::params::pkgname,
+  $config_file          = $::collectd::params::config_file,
+  $config_template_name = $::collectd::params::config_template_name,
+  $config_dir           = $::collectd::params::config_dir,
+  $purge                = $::collectd::params::purge,
+  $service_name         = $::collectd::params::service_name,
+  $service_ensure       = $::collectd::params::service_ensure,
 ) inherits ::collectd::params {
 
   package{$pkgname:
-    ensure => $pkg_ensure,
+    ensure => 'present',
     alias  => 'collectd',
   }
 
@@ -40,19 +39,21 @@ class collectd (
     }
   }
 
-  if ($::operatingsystem =~ /(?i:Debian|Ubuntu)/ ) {
+
+  #if ($::operatingsystem =~ /(?i:Debian|Ubuntu)/ ) {
     # We need a config file that is actually including "/etc/collectd.d" files
     # This has been reported in debian, see Debian BTS #690668
+    # Some CentOS packages e.g. 5.4.0 also has this problem
     file{$config_file:
       ensure  => present,
       group   => 'root',
       owner   => 'root',
       mode    => '0644',
-      content => template('collectd/collectd.conf.Debian'),
+      content => template($config_template_name),
       before  => Service[$service_name],
       require => Package[$pkgname],
     }
-  }
+  #}
 
   file{$config_dir:
     ensure  => 'directory',

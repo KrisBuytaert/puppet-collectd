@@ -2,7 +2,7 @@ LoadPlugin apache
 
 <Plugin apache>
     <Instance "localhost">
-    URL "http://localhost/server-status?auto"
+    URL "<%= @statusurl  %>"
 #       User "www-user"
 #       Password "secret"
 #       VerifyPeer false
