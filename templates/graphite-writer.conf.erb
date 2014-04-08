@@ -1,25 +1,18 @@
 ### File managed with puppet ###
 ### Served by:        '<%= scope.lookupvar('::servername') %>'
 ### Module:           '<%= scope.to_hash['module_name'] %>'
-### Template source:  '<%= template_source %>'
+### Template source:  '<%= @template_source %>'
 
-<LoadPlugin "python">
-    Globals true
-</LoadPlugin>
-
-<Plugin "python">
-    # carbon_writer.py is at path /usr/local/collectd-plugins/carbon_writer.py
-    ModulePath "/usr/local/collectd-plugins/"
-
-    Import "carbon_writer"
-
-    <Module "carbon_writer">
-        LineReceiverHost "<%= graphitehost %>"
-        LineReceiverPort <%= graphiteport %>
-        DifferentiateCountersOverTime true
-        LowercaseMetricNames true
-        TypesDB "/usr/share/collectd/types.db"
-        MetricPrefix "<%= hostname %>" 
-    </Module>
+LoadPlugin "write_graphite"
+<Plugin "write_graphite">
+  <Carbon>
+        Host "<%= @graphitehost %>"
+        Port <%= @graphiteport %>
+        Prefix "<%= @prefix %>" 
+        EscapeCharacter "_"
+        SeparateInstances true
+        StoreRates false
+        AlwaysAppendDS false
+  </Carbon>
 </Plugin>
 
