@@ -1,0 +1,7 @@
+LoadPlugin exec
+
+<Plugin "exec">
+<% execs.sort.each do |exec,value| %>
+  Exec "<%= value['user'] %>" "<%= value['command'] %>"
+<% end %>
+</Plugin>

@@ -1,0 +1,7 @@
+LoadPlugin ping
+
+<Plugin "ping">
+<% hosts.sort.each do |host| %>
+  Host "<%= host %>"
+<% end %>
+</Plugin>

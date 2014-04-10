@@ -1,0 +1,63 @@
+LoadPlugin postgresql
+<Plugin postgresql>
+  Interval 30
+<% databases.each do |dbname| %>
+  <Query dbsize<%= dbname %>>
+    Statement "SELECT pg_database_size('<%= dbname %>')"
+    <Result>
+      Type gauge
+      InstancePrefix "dbsize.<%=dbname%>" 
+      ValuesFrom pg_database_size
+    </Result>
+  </Query><% end %>
+
+  <Database postgres>
+    Host "localhost"
+    Port "5432"
+    User "postgres"
+<% databases.each do |dbname| %>
+    Query dbsize<%= dbname %><%end%>
+  </Database>
+
+<% tables.each do |database, tbles| %>
+<% tbles.each do |table| %>
+  <Query db_<%= database %>_table_<%= table %>>
+    Statement "SELECT count(*) AS <%= table %>_count from <%= table %>"
+    <Result>
+      Type gauge
+      InstancePrefix "tablecount.<%= database %>.<%= table %>" 
+      ValuesFrom <%= table %>_count
+    </Result>
+  </Query><% end %><% end %>
+
+<% tables.each do |database, tbles| %>
+  <Database <%= database %>>
+    Host "localhost"
+    Port "5432"
+    User "postgres"
+<% tbles.each do |table| %>
+    Query db_<%= database %>_table_<%= table %><%end%>
+  </Database>
+<% end %>
+
+<% queries.each_pair do |queryname, queryhash| %>
+  <Query db_<%= queryhash['database'] %>_query_<%= queryname %>>
+    Statement "<%= queryhash['query'] %>"
+    <Result>
+      Type gauge
+      InstancePrefix "query.<%= queryhash['database'] %>.<%= queryname %>" 
+      ValuesFrom result
+    </Result>
+  </Query><% end %>
+
+<% queries.each_pair do |queryname, queryhash| %>
+  <Database <%= queryhash['database'] %>>
+    Interval <%= queryhash['interval'] %>
+    Host "localhost"
+    Port "5432"
+    User "postgres"
+    Query db_<%= queryhash['database'] %>_query_<%= queryname %>
+  </Database>
+<% end %>
+
+</Plugin>
