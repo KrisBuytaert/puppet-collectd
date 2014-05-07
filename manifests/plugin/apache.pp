@@ -1,6 +1,6 @@
 class collectd::plugin::apache(
   $statusurl = 'http://localhost:8008/mod_status?auto',
-  $managelocalvhost = 'no',
+  $managelocalvhost = false,
 )
 {
 
@@ -17,14 +17,19 @@ class collectd::plugin::apache(
   }
 
 
-  if ($managelocalvhost == 'true')
+  if $managelocalvhost
   {
+    $webservice = $::osfamily {
+      'RedHat' => 'httpd',
+      'Debian' => 'apache2',
+    }
 
     file { '/etc/httpd/conf.d/status_8008.conf':
       source => 'puppet:///modules/collectd/plugin/status_8008.conf',
       group  => '0',
       mode   => '0644',
       owner  => '0',
+      notify => Service[$webservice],
     }
 
   }
