@@ -19,7 +19,7 @@ class collectd::plugin::apache(
 
   if $managelocalvhost
   {
-    $webservice = $::osfamily {
+    $webservice = $::osfamily ? {
       'RedHat' => 'httpd',
       'Debian' => 'apache2',
     }
