@@ -22,7 +22,7 @@ class collectd::plugin::mongodb
     mode    => '0644',
     owner   => '0',
     content => template('collectd/mongo.conf.erb'),
-    require => [ Package['pymongo'], File['/usr/local/collectd-plugins/mongodb.py'] ]
+    require => [ Package['pymongo'], File['/usr/local/collectd-plugins/mongodb.py'] ],
     notify  => Service['collectd'],
   }
 
