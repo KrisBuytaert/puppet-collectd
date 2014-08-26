@@ -12,10 +12,9 @@
 #
 # [Remember: No empty lines between comments and class definition]
 
-class collectd::plugin::postfix () {
+class collectd::plugin::postfix {
 
-  file {
-    '/etc/collectd.d/postfix.conf':
+  file { '/etc/collectd.d/postfix.conf':
       group   => '0',
       mode    => '0644',
       owner   => '0',
@@ -25,6 +24,3 @@ class collectd::plugin::postfix () {
   }
 
 }
-
-
-

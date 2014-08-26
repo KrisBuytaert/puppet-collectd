@@ -13,7 +13,7 @@ class collectd::plugin::mongodb
     group  => '0',
     mode   => '0644',
     owner  => '0',
-    content => template('collectd/mongo.py.erb'),
+    content => template('collectd/mongodb.py.erb'),
   }
 
   file { '/etc/collectd.d/mongodb.conf':
@@ -21,7 +21,7 @@ class collectd::plugin::mongodb
     group   => '0',
     mode    => '0644',
     owner   => '0',
-    content => template('collectd/mongo.conf.erb'),
+    content => template('collectd/mongodb.conf.erb'),
     require => [ Package['pymongo'], File['/usr/local/collectd-plugins/mongodb.py'] ],
     notify  => Service['collectd'],
   }
