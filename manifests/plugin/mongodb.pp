@@ -31,13 +31,14 @@ class collectd::plugin::mongodb
     mode    => '0644',
     owner   => '0',
     content => template('collectd/mongodb.conf.erb'),
-    require => [ Package['pymongo'], File['/usr/local/collectd-plugins/mongodb.py'], File_line['types.db'] ],
+    require => [ Package['pymongo'], File['/usr/local/collectd-plugins/mongodb.py'], File_line['mongodbline'] ],
     notify  => Service['collectd'],
   }
 
-  file_line { 'types.db':
+  file_line { 'mongodbline':
     ensure => present,
     line   => 'mail_counter            value:COUNTER:0:65535',
+    match  => '^mail_counter\s+',
     path   => '/usr/share/collectd/types.db',
   }
 
