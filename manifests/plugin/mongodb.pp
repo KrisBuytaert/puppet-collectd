@@ -3,16 +3,18 @@ class collectd::plugin::mongodb
 
   $mongod_bind_ip = hiera('mongod_bind_ip')
 
-  if ! defined(Package['python-pip']) {
+  if !defined(Package['python-pip']) {
     package { 'python-pip':
       ensure => present,
     }
   }
 
-  package {'pymongo':
-    ensure => 'present',
-    provider => 'pip',
-    require => Package['python-pip'],
+  if !defined(Package['pymongo']) {
+    package { 'pymongo':
+      ensure => 'present',
+      provider => 'pip',
+      require => Package['python-pip'],
+    }
   }
 
   file { '/usr/local/collectd-plugins/mongodb.py':
