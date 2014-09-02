@@ -17,12 +17,20 @@ class collectd::plugin::mongodb
     }
   }
 
+  file { '/usr/local/collectd-plugins':
+    ensure => 'directory',
+    group  => 'root',
+    mode   => '0644',
+    owner  => 'root',
+  }
+
   file { '/usr/local/collectd-plugins/mongodb.py':
     ensure => 'file',
-    group  => '0',
+    group  => 'root',
     mode   => '0644',
-    owner  => '0',
+    owner  => 'root',
     content => template('collectd/mongodb.py.erb'),
+    require => File['/usr/local/collectd-plugins'],
   }
 
   file_line { 'mongoline':
