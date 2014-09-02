@@ -1,7 +1,7 @@
 class collectd::plugin::mongodb
 {
 
-  $mongod_bind_ip = hiera('mongod_bind_ip')
+  $mongod_bind_ip = hiera('mongod_bind_ip','127.0.0.1')
 
   if !defined(Package['python-pip']) {
     package { 'python-pip':
@@ -25,13 +25,21 @@ class collectd::plugin::mongodb
     content => template('collectd/mongodb.py.erb'),
   }
 
+  file_line { 'mongoline':
+    ensure => present,
+    line   => 'replication             value:GAUGE:U:U',
+    match  => '^replication\s+',
+    path   => '/usr/share/collectd/types.db',
+  }
+
+
   file { '/etc/collectd.d/mongodb.conf':
     ensure => 'file',
     group   => '0',
     mode    => '0644',
     owner   => '0',
     content => template('collectd/mongodb.conf.erb'),
-    require => [ Package['pymongo'], File['/usr/local/collectd-plugins/mongodb.py'] ],
+    require => [ Package['pymongo'], File['/usr/local/collectd-plugins/mongodb.py'], File_line['mongoline'] ],
     notify  => Service['collectd'],
   }
 
