@@ -9,7 +9,7 @@
     Import "mongodb"
     <Module mongodb>
         Host "<%= @mongod_bind_ip %>"
-        <% @mongod_dbs.each |db| %> 
+        <% @mongod_dbs.each |db| %>
         Database <%= puts "\"db\"" %>
         <% end %>
     </Module>
