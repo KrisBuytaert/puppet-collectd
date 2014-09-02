@@ -2,6 +2,7 @@ class collectd::plugin::mongodb
 {
 
   $mongod_bind_ip = hiera('mongod_bind_ip','127.0.0.1')
+  $mongo_dbs      = hiera('mongod_dbs','admin')
 
   if !defined(Package['python-pip']) {
     package { 'python-pip':
