@@ -11,4 +11,3 @@ class collectd::plugin::write_graphite ( $graphitehost, $graphiteport) {
   }
 
 }
-:
