@@ -1,0 +1,14 @@
+LoadPlugin write_graphite
+
+<Plugin write_graphite>
+  <Carbon>
+    Host "<% graphitehost %>"
+    Port  "<% graphiteport %>"
+    Prefix "<% hostname %>"
+    EscapeCharacter "_"
+    StoreRates true
+    AlwaysAppendDS false
+    SeparateInstances false
+    Protocol "udp"
+  </Carbon>
+</Plugin>
