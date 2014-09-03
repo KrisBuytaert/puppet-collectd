@@ -25,7 +25,7 @@ class collectd::plugin::postfix {
 
   file_line { 'postfixline':
     ensure => present,
-    line   => 'mail_counter            value:COUNTER:0:65535',
+    line   => 'mail_counter            value:COUNTER:0:65535 ',
     match  => '^mail_counter\s+',
     path   => '/usr/share/collectd/types.db',
   }
