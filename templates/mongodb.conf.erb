@@ -9,6 +9,6 @@
     Import "mongodb"
     <Module mongodb>
         Host "<%= @mongod_bind_ip %>"
-        Database "admin" "db-prod" "db-dev"
+        Database <%- @mongod_dbs.each do |db| -%> "<%= db %>" <%- end %>
     </Module>
 </Plugin>
