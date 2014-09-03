@@ -2,6 +2,10 @@
 #
 # Plugin to collectd statistics from MongoDB
 #
+### File managed with puppet ###
+### Served by:        '<%= scope.lookupvar('::servername') %>'
+### Module:           '<%= scope.to_hash['module_name'] %>'
+### Template source:  '<%= template_source %>'
 
 import collectd
 import pymongo
