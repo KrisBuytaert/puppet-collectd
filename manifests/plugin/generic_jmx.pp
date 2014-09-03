@@ -41,9 +41,14 @@ class collectd::plugin::generic_jmx
       line    => 'lookups		value:GAUGE:0:U', 
       require => Package['collectd'],
       notify  => Service['collectd'];
-   'custom.types.db-insers':
+   'custom.types.db-inserts':
       path    => '/usr/share/collectd/types.db',
       line    => 'inserts		value:GAUGE:0:U', 
+      require => Package['collectd'],
+      notify  => Service['collectd'];
+   'custom.types.db-jmx_memory':
+      path    => '/usr/share/collectd/types.db',
+      line    => 'jmx_memory		value:GAUGE:0:U',
       require => Package['collectd'],
       notify  => Service['collectd'];
    } 
