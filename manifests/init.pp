@@ -70,4 +70,8 @@ class collectd (
     require => Package[$pkgname],
   }
 
+ package{'collectd-java':
+   ensure  => 'present',
+   require => Package[$pkgname],
+ }
 }
