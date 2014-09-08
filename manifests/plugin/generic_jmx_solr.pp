@@ -12,6 +12,7 @@ class collectd::plugin::generic_jmx_solr(
     notify  => Service['collectd'],
   }
  
+
   file_line { 
     'custom.types.db-errors':
       path    => '/usr/share/collectd/types.db',
