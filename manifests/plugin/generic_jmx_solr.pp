@@ -11,7 +11,6 @@ class collectd::plugin::generic_jmx_solr(
     content => template('collectd/generic_jmx_solr.conf.erb'),
     notify  => Service['collectd'],
   }
- 
 
   file_line { 
     'custom.types.db-errors':
