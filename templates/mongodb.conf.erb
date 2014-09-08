@@ -1,10 +1,15 @@
+### File managed with puppet ###
+### Served by:        '<%= scope.lookupvar('::servername') %>'
+### Module:           '<%= scope.to_hash['module_name'] %>'
+### Template source:  '<%= template_source %>'
+
 <LoadPlugin python>
     Globals true
 </LoadPlugin>
 
 <Plugin python>
-    # mongodb.py is at path /opt/collectd-plugins/mongodb.py
-    ModulePath "/opt/collectd-plugins/"
+    # mongodb.py is at path /usr/local/collectd-plugins/mongodb.py
+    ModulePath "/usr/local/collectd-plugins/"
 
     Import "mongodb"
     <Module mongodb>
