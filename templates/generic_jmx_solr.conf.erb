@@ -115,6 +115,7 @@ LoadPlugin "java"
 #-----------------------------------------------------------------------------------------------
 #---------------------------------------------CATALINA------------------------------------------
 #-----------------------------------------------------------------------------------------------
+<% if @engine == 'tomcat'-%>
 
     <MBean "catalina/global_request_processor">
       ObjectName "Catalina:name=http-8080,type=GlobalRequestProcessor,*"
@@ -169,12 +170,14 @@ LoadPlugin "java"
         Attribute "currentThreadsBusy"
       </Value>
     </MBean>
-    
+<% end -%>    
 #-----------------------------------------------------------------------------------------------
 #-------------------------------------------SOLR------------------------------------------------
 #-----------------------------------------------------------------------------------------------    
+
+
     <MBean "solr/BinaryUpdateHandler">
-	ObjectName "solr/mediamosa:id=org.apache.solr.handler.BinaryUpdateRequestHandler,type=org*" 	
+	ObjectName "<%= @domain %>:id=org.apache.solr.handler.BinaryUpdateRequestHandler,type=org*" 	
 	#InstancePrefix "BinaryUpdateReq"
         #InstanceFrom "type"
 	
@@ -219,7 +222,7 @@ LoadPlugin "java"
     </MBean>
 #--------------------------------------------------------------------------------------------------
      <MBean "solr/DumpRequestHandler">
-	ObjectName "solr/mediamosa:id=org.apache.solr.handler.DumpRequestHandler,type=org*" 	
+	ObjectName "<%= @domain %>:id=org.apache.solr.handler.DumpRequestHandler,type=org*" 	
 	#InstancePrefix "DumpRequest"
 	#InstanceFrom "type"
 	
@@ -264,7 +267,7 @@ LoadPlugin "java"
     </MBean>
 #--------------------------------------------------------------------------------------------------
       <MBean "solr/PingRequestHandler">
-	ObjectName "solr/mediamosa:id=org.apache.solr.handler.PingRequestHandler,type=org.*" 	
+	ObjectName "<%= @domain %>:id=org.apache.solr.handler.PingRequestHandler,type=org.*" 	
 	#InstancePrefix "PingRequest"
 	#InstanceFrom "type"
 	
@@ -309,7 +312,7 @@ LoadPlugin "java"
     </MBean>
  #--------------------------------------------------------------------------------------------------
        <MBean "solr/XmlUpdateRequestHandler">
-	ObjectName "solr/mediamosa:id=org.apache.solr.handler.XmlUpdateRequestHandler,type=org.*" 	
+	ObjectName "<%= @domain %>:id=org.apache.solr.handler.XmlUpdateRequestHandler,type=org.*" 	
 	#InstancePrefix "XMLRequest"
 	#InstanceFrom "type"
 	
@@ -354,7 +357,7 @@ LoadPlugin "java"
     </MBean>
  #--------------------------------------------------------------------------------------------------
        <MBean "solr/componentSearchHandler">
-	ObjectName "solr/mediamosa:id=org.apache.solr.handler.component.SearchHandler,type=org.apache.solr.handler.component.SearchHandler*" 	
+	ObjectName "<%= @domain %>:id=org.apache.solr.handler.component.SearchHandler,type=org.apache.solr.handler.component.SearchHandler*" 	
 	#InstancePrefix "SearchHandler"
 	#InstanceFrom "type"
 	
@@ -399,7 +402,7 @@ LoadPlugin "java"
     </MBean>
  #--------------------------------------------------------------------------------------------------
         <MBean "solr/fieldCache">
-    ObjectName "solr/mediamosa:id=org.apache.solr.search.SolrFieldCacheMBean,type=fieldCache"
+    ObjectName "<%= @domain %>:id=org.apache.solr.search.SolrFieldCacheMBean,type=fieldCache"
 
       <Value>
   Type "gauge"
@@ -412,7 +415,7 @@ LoadPlugin "java"
 #--------------------------------------------------------------------------------------------------
 
   <MBean "solr/LRUcacheDocumentCache">
-  ObjectName "solr/mediamosa:id=org.apache.solr.search.LRUCache,type=documentCache"
+  ObjectName "<%= @domain %>:id=org.apache.solr.search.LRUCache,type=documentCache"
       
       <Value>
   Type "evictions"
@@ -494,7 +497,7 @@ LoadPlugin "java"
       </MBean>
 #--------------------------------------------------------------------------------------------------
     <MBean "solr/LRUcacheQueryResultCache">
-  ObjectName "solr/mediamosa:id=org.apache.solr.search.LRUCache,type=queryResultCache"
+  ObjectName "<%= @domain %>:id=org.apache.solr.search.LRUCache,type=queryResultCache"
       
       <Value>
   Type "evictions"

@@ -1,12 +1,14 @@
-class collectd::plugin::generic_jmx
-{
+class collectd::plugin::generic_jmx_solr(
+  $domain  = "solr/",
+  $engine  = "tomcat",
+){
 
-  file { '/etc/collectd.d/generic_jmx.conf':
-    ensure => 'file',
+  file { '/etc/collectd.d/generic_jmx_solr.conf':
+    ensure  => 'file',
     group   => 'root',
     mode    => '0644',
     owner   => 'root',
-    source  => 'puppet:///modules/collectd/generic_jmx.conf',
+    content => template('collectd/generic_jmx_solr.conf.erb'),
     notify  => Service['collectd'],
   }
  
