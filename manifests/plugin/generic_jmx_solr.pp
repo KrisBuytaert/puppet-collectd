@@ -53,5 +53,15 @@ class collectd::plugin::generic_jmx_solr(
       line    => 'jmx_memory		value:GAUGE:0:U',
       require => Package['collectd'],
       notify  => Service['collectd'];
+    'custom.types.db-numDocs':
+      path    => '/usr/share/collectd/types.db',
+      line    => 'docs    value:GAUGE:0:U',
+      require => Package['collectd'],
+      notify  => Service['collectd'];
+    'custom.types.db-size':
+      path    => '/usr/share/collectd/types.db',
+      line    => 'size    value:GAUGE:0:U',
+      require => Package['collectd'],
+      notify  => Service['collectd'];
    } 
  }

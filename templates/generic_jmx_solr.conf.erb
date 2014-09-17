@@ -578,6 +578,92 @@ LoadPlugin "java"
 
       </MBean>
 #--------------------------------------------------------------------------------------------------
+      <MBean "solr/indexSearcher">
+        ObjectName "<%= @domain %>:id=org.apache.solr.search.SolrIndexSearcher,type=searcher"
+
+          <Value>
+      Type "docs"
+      InstancePrefix "SOLR_indexSearcher_maxDocs"
+      Table false
+      Attribute "maxDoc"
+          </Value>
+
+          <Value>
+      Type "docs"
+      InstancePrefix "SOLR_indexSearcher_numDocs"
+      Table false
+      Attribute "numDoc"
+          </Value>
+
+      </MBean>
+#--------------------------------------------------------------------------------------------------
+      <MBean "solr/searchHandler_select">
+        ObjectName "<%= @domain %>:id=org.apache.solr.handler.component.SearchHandler,type=/select"
+
+      <Value>
+  Type "requests"
+  InstancePrefix "SOLR_SearchHandler_select_avgRequestsPerSecond"
+  #InstanceFrom ""
+  Table false
+  Attribute "avgRequestsPerSecond"  
+      </Value>
+      
+      <Value>
+  Type "requests"
+  InstancePrefix "SOLR_SearchHandler_select_requests"
+  #InstanceFrom ""
+  Table false
+  Attribute "requests"  
+      </Value>
+
+      <Value>
+  Type "duration"
+  InstancePrefix "SOLR_SearchHandler_select_avgSecondsPerRequest"
+  Table false
+  Attribute "avgTimePerRequest"
+      </Value>
+  
+      <Value>
+  Type "errors"
+  InstancePrefix "SOLR_SearchHandler_select_errors"
+  #InstanceFrom ""
+  Table false
+  Attribute "errors"
+      </Value>  
+
+      <Value>
+  Type "timeouts"
+  InstancePrefix "SOLR_SearchHandler_select_timeouts"
+  Table false
+  Attribute "timeouts"
+      </Value>
+  
+    </MBean>
+
+#--------------------------------------------------------------------------------------------------
+      <MBean "solr/updateHandler">
+        ObjectName "<%= @domain %>:id=org.apache.solr.update.DirectUpdateHandler2,type=updateHandler"
+
+      <Value>
+  Type "docs"
+  InstancePrefix "SOLR_updateHandler_docsPending"
+  #InstanceFrom ""
+  Table false
+  Attribute "docsPending"  
+      </Value>
+      
+      <Value>
+  Type "errors"
+  InstancePrefix "SOLR_updateHandler_errors"
+  #InstanceFrom ""
+  Table false
+  Attribute "errors"  
+      </Value>
+  
+    </MBean>
+      
+
+#--------------------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------------------
 
