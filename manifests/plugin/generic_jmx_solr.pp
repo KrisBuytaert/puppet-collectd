@@ -12,6 +12,13 @@ class collectd::plugin::generic_jmx_solr(
     notify  => Service['collectd'],
   }
 
+  if $operatingsystem == 'CentOS'{
+    package{'collectd-java':
+      ensure  => 'present',
+      require => Package[$pkgname],
+    }
+  }
+
   file_line { 
     'custom.types.db-errors':
       path    => '/usr/share/collectd/types.db',

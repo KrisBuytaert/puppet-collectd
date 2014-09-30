@@ -69,10 +69,5 @@ class collectd (
     enable  => $service_enable,
     require => Package[$pkgname],
   }
- if $operatingsystem == 'CentOS'{
-  package{'collectd-java':
-    ensure  => 'present',
-    require => Package[$pkgname],
-  }
- }
+
 }
