@@ -7,6 +7,10 @@
     Globals true
 </LoadPlugin>
 
+<LoadPlugin processes>
+    Globals true
+</LoadPlugin>
+
 <Plugin python>
     # mongodb.py is at path /usr/local/collectd-plugins/mongodb.py
     ModulePath "/usr/local/collectd-plugins/"
@@ -16,4 +20,8 @@
         Host "<%= @mongod_bind_ip %>"
         Database <%- @mongod_dbs.each do |db| -%> "<%= db %>" <%- end %>
     </Module>
+</Plugin>
+
+<Plugin processes>
+    ProcessMatch "mongod" "\/usr\/bin\/mongod" 
 </Plugin>
