@@ -11,9 +11,9 @@ class collectd::plugin::mongodb
 
   if !defined(Package['pymongo']) {
     package { 'pymongo':
-      ensure => 'present',
+      ensure   => 'present',
       provider => 'pip',
-      require => Package['python-pip'],
+      require  => Package['python-pip'],
     }
   }
 
@@ -25,10 +25,10 @@ class collectd::plugin::mongodb
 #  }
 
   file { '/usr/local/collectd-plugins/mongodb.py':
-    ensure => 'file',
-    group  => 'root',
-    mode   => '0644',
-    owner  => 'root',
+    ensure  => 'file',
+    group   => 'root',
+    mode    => '0644',
+    owner   => 'root',
     content => template('collectd/mongodb.py.erb'),
 #   require => File['/usr/local/collectd-plugins'],
   }
@@ -42,7 +42,7 @@ class collectd::plugin::mongodb
 
 
   file { '/etc/collectd.d/mongodb.conf':
-    ensure => 'file',
+    ensure  => 'file',
     group   => '0',
     mode    => '0644',
     owner   => '0',
