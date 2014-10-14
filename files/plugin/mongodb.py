@@ -3,9 +3,6 @@
 # Plugin to collectd statistics from MongoDB
 #
 ### File managed with puppet ###
-### Served by:        '<%= scope.lookupvar('::servername') %>'
-### Module:           '<%= scope.to_hash['module_name'] %>'
-### Template source:  '<%= template_source %>'
 
 import collectd
 import pymongo
@@ -64,9 +61,8 @@ class MongoDB(object):
 
     def __init__(self):
         self.plugin_name = "mongo"
-        self.mongo_host = "<%= @mongod_bind_ip %>"
+        self.mongo_host = "127.0.0.1"
         self.mongo_port = 27017
-        self.mongo_db = Connection(host=self.mongo_host, port=self.mongo_port).database_names()
         self.mongo_user = None
         self.mongo_password = None
 
@@ -96,6 +92,7 @@ class MongoDB(object):
         passwd = self.mongo_password
         perf_data = False
         con = Connection(host=self.mongo_host, port=self.mongo_port, slave_okay=True)
+        self.mongo_db = con.database_names()
         db = con[self.mongo_db[0]]
         if self.mongo_user and self.mongo_password:
             db.authenticate(self.mongo_user, self.mongo_password)
@@ -302,5 +299,5 @@ class MongoDB(object):
                 collectd.warning("mongodb plugin: Unkown configuration key %s" % node.key)
 
 mongodb = MongoDB()
-collectd.register_read(mongodb.do_server_status)
 collectd.register_config(mongodb.config)
+collectd.register_read(mongodb.do_server_status)

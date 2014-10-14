@@ -25,12 +25,11 @@ class collectd::plugin::mongodb
 #  }
 
   file { '/usr/local/collectd-plugins/mongodb.py':
-    ensure  => 'file',
-    group   => 'root',
-    mode    => '0644',
-    owner   => 'root',
-    content => template('collectd/mongodb.py.erb'),
-#   require => File['/usr/local/collectd-plugins'],
+    ensure => 'file',
+    group  => 'root',
+    mode   => '0644',
+    owner  => 'root',
+    source => 'puppet:///modules/collectd/plugin/mongodb.py',
   }
 
   file_line { 'mongoline':
@@ -47,7 +46,11 @@ class collectd::plugin::mongodb
     mode    => '0644',
     owner   => '0',
     content => template('collectd/mongodb.conf.erb'),
-    require => [ Package['pymongo'], File['/usr/local/collectd-plugins/mongodb.py'], File_line['mongoline'] ],
+    require => [
+      Package['pymongo'],
+      File['/usr/local/collectd-plugins/mongodb.py'],
+      File_line['mongoline']
+    ],
     notify  => Service['collectd'],
   }
 
