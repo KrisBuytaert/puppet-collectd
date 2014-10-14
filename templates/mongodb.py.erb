@@ -66,7 +66,7 @@ class MongoDB(object):
         self.plugin_name = "mongo"
         self.mongo_host = "<%= @mongod_bind_ip %>"
         self.mongo_port = 27017
-        self.mongo_db = ["admin", ]
+        self.mongo_db = Connection(host=self.mongo_host, port=self.mongo_port).database_names()
         self.mongo_user = None
         self.mongo_password = None
 
