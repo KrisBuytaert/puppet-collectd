@@ -1,7 +1,11 @@
 class collectd::plugin::nginx(
   $statusurl = 'http://localhost/ngxinx_status',
+  $url = undef,
 )
 {
+  if defined($url) {
+    $statusurl = $url
+  }
 
   package {'collectd-nginx':
     ensure => 'present',
