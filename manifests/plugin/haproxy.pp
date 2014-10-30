@@ -6,6 +6,10 @@ class collectd::plugin::haproxy {
   match  => '^haproxy_backend\s+',
   }
 
+  package {'socat':
+    ensure => 'present',
+  }
+
   file { '/usr/local/collectd-plugins/haproxy-stat.sh':
     ensure => 'file',
     group  => 'root',
