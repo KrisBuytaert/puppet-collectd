@@ -3,8 +3,11 @@ class collectd::plugin::nginx(
   $url = undef,
 )
 {
-  if defined($url) {
-    $statusurl = $url
+  if $url != undef {
+    $real_url = $url
+  }
+  else {
+    $real_url = $statusurl
   }
 
   package {'collectd-nginx':
