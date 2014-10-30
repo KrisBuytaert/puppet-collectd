@@ -1,6 +1,6 @@
  #!/bin/sh
  
- sock='/var/run/haproxy-stat'
+ sock='/var/lib/haproxy/stats'
  host="${COLLECTD_HOSTNAME}"
  pause="${COLLECTD_INTERVAL:-10}"
  
