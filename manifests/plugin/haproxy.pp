@@ -30,7 +30,17 @@ class collectd::plugin::haproxy {
     mode   => '0644',
     owner  => 'root',
     source => 'puppet:///modules/collectd/plugin/exec.conf',
+    notify  => Service['sshd'],
   }
+
+  file { '/etc/haproxy/haproxy.cfg':
+    ensure => 'file',
+    group  => 'root',
+    mode   => '0644',
+    owner  => 'root',
+    notify  => Service['haproxy'],
+  }
+
 
 }
 
