@@ -8,7 +8,7 @@ class collectd::plugin::haproxy {
 
   file_line { 'socket':
   path => '/etc/haproxy/haproxy.cfg',
-  line => 'stats  socket /var/lib/haproxy/stats mode 600 level admin user haproxy group haproxy',
+  line => '  stats  socket /var/lib/haproxy/stats mode 600 level admin user haproxy group haproxy',
   match  => '^  stats  socket',
   }
 
