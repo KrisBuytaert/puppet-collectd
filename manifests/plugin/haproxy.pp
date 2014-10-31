@@ -22,7 +22,7 @@ class collectd::plugin::haproxy {
     mode   => '0755',
     owner  => 'root',
     source => 'puppet:///modules/collectd/plugin/haproxy-stat.sh',
-    notify => 'Service['haproxy']',
+    notify => Service['haproxy'],
   }
 
   file { '/etc/collectd.d/exec.conf':
