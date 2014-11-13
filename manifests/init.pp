@@ -1,13 +1,14 @@
 # Class: collectd
 #
 class collectd (
-  $pkgname              = $::collectd::params::pkgname,
+  $config_dir           = $::collectd::params::config_dir,
   $config_file          = $::collectd::params::config_file,
   $config_template_name = $::collectd::params::config_template_name,
-  $config_dir           = $::collectd::params::config_dir,
+  $pkgname              = $::collectd::params::pkgname,
   $purge                = $::collectd::params::purge,
-  $service_name         = $::collectd::params::service_name,
+  $service_enable       = $::collectd::params::service_enable,
   $service_ensure       = $::collectd::params::service_ensure,
+  $service_name         = $::collectd::params::service_name,
 ) inherits ::collectd::params {
   package{$pkgname:
     ensure => 'present',
