@@ -9,7 +9,7 @@ class collectd::plugin::write_riemann (
 
   file { '/etc/collectd.d/write_riemann.conf':
     ensure  => present,
-    content => template('collectd/write_riemann.conf.erb');
+    content => template('collectd/write_riemann.conf.erb'),
     group   => '0',
     mode    => '0644',
     notify  => Service[$::collectd::params::service_name],
