@@ -1,6 +1,8 @@
+# Class: collectd::params
+#
 class collectd::params (
   $pkgname        = $::operatingsystem ? {
-    /(?i:centos|redhat|fedora)/ => "collectd.$::architecture",
+    /(?i:centos|redhat|fedora)/ => "collectd.${::architecture}",
     default                     => 'collectd',
   },
   $config_file    = $::operatingsystem ? {
@@ -19,3 +21,4 @@ class collectd::params (
   $service_enable = true,
 ) {
 }
+

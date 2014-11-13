@@ -1,20 +1,23 @@
-class collectd::plugin::postgresql ($databases, $tables, $queries = {}){
-
-  package {
-    'collectd-postgresql':
-      ensure  => installed,
-      require => Package['collectd'],
+# Class: collectd::plugin::postgresql
+#
+class collectd::plugin::postgresql (
+  $databases,
+  $queries = {},
+  $tables,
+) {
+  package { 'collectd-postgresql':
+    ensure  => present,
+    require => Package['collectd'],
   }
 
-  file {
-    '/etc/collectd.d/postgresql.conf':
-      content => template('collectd/postgresql.conf.erb'),
-      group   => '0',
-      mode    => '0644',
-      owner   => '0',
-      notify  => Service['collectd'],
-      require => Package['collectd-postgresql','collectd'],
+  file { '/etc/collectd.d/postgresql.conf':
+    ensure  => present,
+    content => template('collectd/postgresql.conf.erb'),
+    group   => '0',
+    mode    => '0644',
+    notify  => Service['collectd'],
+    owner   => '0',
+    require => Package['collectd-postgresql','collectd'],
   }
-
 }
 

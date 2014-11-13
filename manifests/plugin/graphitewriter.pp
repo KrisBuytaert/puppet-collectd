@@ -1,34 +1,18 @@
-# Class: collectd
+# Class: collectd::plugin::graphitewriter (
 #
-# This module manages collectd
-#
-# Parameters:
-#
-# Actions:
-#
-# Requires:
-#
-# Sample Usage:
-#
-# [Remember: No empty lines between comments and class definition]
-
 class collectd::plugin::graphitewriter (
   $graphitehost,
   $graphiteport,
-  $prefix = "collectd.")
-{
-
-  file {
-    '/etc/collectd.d/graphite-writer.conf':
-      group   => '0',
-      mode    => '0644',
-      owner   => '0',
-      require => Package['collectd'],
-      notify  => Service['collectd'],
-      content => template('collectd/graphite-writer.conf.erb');
+  $prefix = 'collectd.'
+) {
+  file { '/etc/collectd.d/graphite-writer.conf':
+    ensure  => present,
+    content => template('collectd/graphite-writer.conf.erb'),
+    group   => '0',
+    mode    => '0644',
+    notify  => Service['collectd'],
+    owner   => '0',
+    require => Package['collectd'],
   }
-
 }
-
-
 

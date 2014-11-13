@@ -1,16 +1,5 @@
 # Class: collectd
 #
-# This module manages collectd
-#
-# Parameters:
-#
-# Actions:
-#
-# Requires:
-#
-# Sample Usage:
-#
-# [Remember: No empty lines between comments and class definition]
 class collectd (
   $pkgname              = $::collectd::params::pkgname,
   $config_file          = $::collectd::params::config_file,
@@ -20,7 +9,6 @@ class collectd (
   $service_name         = $::collectd::params::service_name,
   $service_ensure       = $::collectd::params::service_ensure,
 ) inherits ::collectd::params {
-
   package{$pkgname:
     ensure => 'present',
     alias  => 'collectd',
@@ -38,7 +26,6 @@ class collectd (
       before => Service[$service_name],
     }
   }
-
 
   #if ($::operatingsystem =~ /(?i:Debian|Ubuntu)/ ) {
     # We need a config file that is actually including "/etc/collectd.d" files
@@ -69,5 +56,5 @@ class collectd (
     enable  => $service_enable,
     require => Package[$pkgname],
   }
-
 }
+
