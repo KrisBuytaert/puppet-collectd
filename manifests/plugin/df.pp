@@ -1,13 +1,13 @@
-class collectd::plugin::df{
-
-
+# Class: collectd::plugin::df
+#
+class collectd::plugin::df {
   file { '/etc/collectd.d/df.conf':
-    source => 'puppet:///modules/collectd/plugin/df.conf',
+    ensure => present,
     group  => '0',
     mode   => '0644',
-    owner  => '0',
     notify => Service['collectd'],
-
+    owner  => '0',
+    source => 'puppet:///modules/collectd/plugin/df.conf',
   }
 }
 

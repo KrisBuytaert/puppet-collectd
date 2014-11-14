@@ -1,8 +1,8 @@
-class collectd::plugin::mongodb
-{
-
+# Class: collectd::plugin::mongodb
+#
+class collectd::plugin::mongodb {
   $mongod_bind_ip = hiera('mongod_bind_ip','127.0.0.1')
-  $mongod_dbs      = hiera('mongod_dbs',['admin'])
+  $mongod_dbs     = hiera('mongod_dbs',['admin'])
 
   if !defined(Package['python-pip']) {
     package { 'python-pip':
@@ -20,10 +20,10 @@ class collectd::plugin::mongodb
 
   file { '/usr/local/collectd-plugins/mongodb.py':
     ensure  => 'file',
+    content => template('collectd/mongodb.py.erb'),
     group   => 'root',
     mode    => '0644',
     owner   => 'root',
-    content => template('collectd/mongodb.py.erb'),
   }
 
   file_line { 'mongoline':
@@ -33,15 +33,17 @@ class collectd::plugin::mongodb
     path   => '/usr/share/collectd/types.db',
   }
 
-
   file { '/etc/collectd.d/mongodb.conf':
     ensure  => 'file',
+    content => template('collectd/mongodb.conf.erb'),
     group   => '0',
     mode    => '0644',
-    owner   => '0',
-    content => template('collectd/mongodb.conf.erb'),
-    require => [ Package['pymongo'], File['/usr/local/collectd-plugins/mongodb.py'], File_line['mongoline'] ],
     notify  => Service['collectd'],
+    owner   => '0',
+    require => [
+      Package['pymongo'],
+      File['/usr/local/collectd-plugins/mongodb.py'],
+      File_line['mongoline']
+    ],
   }
-
 }
