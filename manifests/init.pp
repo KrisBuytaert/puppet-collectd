@@ -19,6 +19,7 @@ class collectd (
   $purge                = $::collectd::params::purge,
   $service_name         = $::collectd::params::service_name,
   $service_ensure       = $::collectd::params::service_ensure,
+  $plugin_dir           = '/usr/local/collectd-plugins/'
 ) inherits ::collectd::params {
 
   package{$pkgname:
@@ -39,6 +40,12 @@ class collectd (
     }
   }
 
+  file { $plugin_dir:
+    ensure => 'directory',
+    group  => '0',
+    mode   => '0755',
+    owner  => '0',
+  }
 
   #if ($::operatingsystem =~ /(?i:Debian|Ubuntu)/ ) {
     # We need a config file that is actually including "/etc/collectd.d" files
