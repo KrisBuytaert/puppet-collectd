@@ -15,7 +15,6 @@ class collectd::plugin::generic_jmx_solr(
   if $operatingsystem == 'CentOS'{
     package{'collectd-java':
       ensure  => 'present',
-      require => Package[$pkgname],
     }
   }
 
