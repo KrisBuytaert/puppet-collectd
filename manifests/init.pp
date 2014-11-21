@@ -59,6 +59,7 @@ class collectd (
       content => template($config_template_name),
       before  => Service[$service_name],
       require => Package[$pkgname],
+      notify  => Service['collectd'],
     }
   #}
 
