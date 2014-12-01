@@ -41,8 +41,8 @@ Include "/etc/collectd.d"
 
 # Limit the size of the write queue. Default is no limit. Setting up a limit is
 # recommended for servers handling a high volume of traffic.
-#WriteQueueLimitHigh 1000000
-#WriteQueueLimitLow   800000
+WriteQueueLimitHigh 1000000
+WriteQueueLimitLow   800000
 
 ##############################################################################
 # Logging                                                                    #
