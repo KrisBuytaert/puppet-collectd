@@ -33,13 +33,14 @@ class collectd (
     # This has been reported in debian, see Debian BTS #690668
     # Some CentOS packages e.g. 5.4.0 also has this problem
     file{$config_file:
-      ensure  => present,
-      group   => 'root',
-      owner   => 'root',
-      mode    => '0644',
-      content => template($config_template_name),
-      before  => Service[$service_name],
-      require => Package[$pkgname],
+      ensure   => present,
+      group    => 'root',
+      owner    => 'root',
+      mode     => '0644',
+      content  => template($config_template_name),
+      before   => Service[$service_name],
+      require  => Package[$pkgname],
+      notify => Service['collectd'],
     }
   #}
 
