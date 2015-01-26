@@ -36,7 +36,7 @@ class collectd::plugin::ipmi {
 
   sudo::conf{'ipmi_collectd':
     content => "Defaults:collectd !requiretty
-    collectd ALL=(ALL) NOPASSWD:/usr/bin/collectd-ipmitool\n",
+    collectd ALL=(ALL) NOPASSWD:/usr/local/collectd-plugins/ipmi-collectd\n",
   }
 
 
