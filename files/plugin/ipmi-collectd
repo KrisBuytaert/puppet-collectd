@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+hostname = ENV['COLLECTD_HOSTNAME'] || `hostname -f`.strip
+interval = ENV['COLLECTD_INTERVAL'] || "10"
+
+while true
+  `ipmitool sensor`.split("\n").each do |line|
+    next unless line.include?("|")
+    name, value, type = line.split("|")
+    name = name.strip.downcase.gsub!(/\s+/, "_")
+    value = value[/([\d\.]+)/] || next
+    type = case type
+      when /degree/i: "temperature"
+      when /rpm/i:    "fanspeed"
+      when /watt/i:   "power"
+      when /volt/i:   "voltage"
+      else next
+    end
+    puts ["PUTVAL",
+      "#{hostname}/ipmitool/#{type}-#{name}",
+      "interval=#{interval}",
+      "N:#{value.to_f}"].join(" ")
+    STDOUT.flush
+  end
+  (ARGV.include?("--no-loop") && break) || sleep(interval.to_i)
+end
+
+
+
+
