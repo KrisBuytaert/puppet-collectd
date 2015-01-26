@@ -36,7 +36,7 @@ class collectd::plugin::ipmi {
 
   sudo::conf{'ipmi_collectd':
     content => "Defaults:collectd !requiretty
-    nagios ALL=(ALL) /usr/bin/collectd-ipmitool\n",
+    collectd ALL=(ALL) NOPASSWD:/usr/bin/collectd-ipmitool\n",
   }
 
 
