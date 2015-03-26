@@ -9,6 +9,7 @@ class collectd::plugin::redis {
     mode   => '0755',
     owner  => 'redis',
     source => 'puppet:///modules/collectd/plugin/redis-stat.sh',
+    notify => Service['collectd'],
   }
 
   file { '/etc/collectd.d/redis.conf':
