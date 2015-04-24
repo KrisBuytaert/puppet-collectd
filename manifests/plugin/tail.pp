@@ -36,7 +36,7 @@
 #
 # More information on the tail plugin can be found at:
 # https://collectd.org/wiki/index.php/Plugin:Tail
-class ::collectd::plugin::tail (
+class collectd::plugin::tail (
   $tail_dstype        = undef,
   $tail_file_path     = undef,
   $tail_instance      = undef,
