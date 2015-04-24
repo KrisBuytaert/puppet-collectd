@@ -1,0 +1,18 @@
+### File managed with puppet ###
+### Served by:        '<%= scope.lookupvar('::servername') %>'
+### Module:           '<%= scope.to_hash['module_name'] %>'
+### Template source:  '<%= template_source %>'
+
+LoadPlugin tail
+
+<Plugin "tail">
+  <File "<%= @tail_file_path %>">
+    Instance "<%= @tail_instance %>"
+    <Match>
+      Regex "\\<<%= @tail_regex %>\\>"
+      DSType "<%= @tail_dstype %>"
+      Type "<%= @tail_type %>"
+      Instance "<%= @tail_instance_name %>"
+    </Match>
+  </File>
+</Plugin>
