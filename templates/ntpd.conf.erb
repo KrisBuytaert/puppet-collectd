@@ -1,0 +1,8 @@
+LoadPlugin ntpd
+<Plugin ntpd>
+        Host "<%= @host %>"
+        Port <%= @port %>
+        ReverseLookups <%= @reverse_lookups %>
+        IncludeUnitID <%= @include_unit_id %>
+</Plugin>
+

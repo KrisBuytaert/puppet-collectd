@@ -1,0 +1,21 @@
+class collectd::plugin::ntpd(
+  $host            = 'localhost',
+  $port            = 123,
+  $reverse_lookups = false,
+  $include_unit_id = true,
+)
+{
+
+  package {'ntp':
+    ensure => 'present',
+  }
+
+  file { '/etc/collectd.d/ntpd.conf':
+    content => template('collectd/ntpd.conf.erb'),
+    group   => '0',
+    mode    => '0644',
+    owner   => '0',
+    notify  => Service['collectd'],
+  }
+
+}
