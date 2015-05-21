@@ -6,10 +6,6 @@ class collectd::plugin::ntpd(
 )
 {
 
-  package {'ntp':
-    ensure => 'present',
-  }
-
   file { '/etc/collectd.d/ntpd.conf':
     content => template('collectd/ntpd.conf.erb'),
     group   => '0',
