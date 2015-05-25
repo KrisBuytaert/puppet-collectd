@@ -52,19 +52,19 @@ WriteQueueLimitLow   800000
 # accessed.                                                                  #
 ##############################################################################
 
-#LoadPlugin syslog
+LoadPlugin syslog
 
-LoadPlugin logfile
-<Plugin logfile>
-	LogLevel warning
-	File "/var/log/collectd.log"
-	Timestamp true
-	PrintSeverity false
-</Plugin>
-
-#<Plugin syslog>
-#	LogLevel info
+#LoadPlugin logfile
+#<Plugin logfile>
+#	LogLevel warning
+#	File "/var/log/collectd.log"
+#	Timestamp true
+#	PrintSeverity false
 #</Plugin>
+
+<Plugin syslog>
+	LogLevel warning
+</Plugin>
 
 ##############################################################################
 # LoadPlugin section                                                         #
