@@ -1,5 +1,4 @@
-class collectd::plugin::python(
-)
+class collectd::plugin::python {
 
   package {'collectd-python':
     ensure => 'present',
