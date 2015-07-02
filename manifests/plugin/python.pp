@@ -4,7 +4,7 @@ class collectd::plugin::python {
     ensure => 'present',
   }
 
-  file { '/etc/collectd.d/python.conf':
+  file { '/etc/collectd.d/00python.conf':
     source => 'puppet:///modules/collectd/plugin/python.conf',
     group  => '0',
     mode   => '0644',
