@@ -5,7 +5,7 @@ class collectd::plugin::python {
   }
 
   file { '/etc/collectd.d/python.conf':
-    source => 'puppet:///modules/collectd/python.conf',
+    source => 'puppet:///modules/collectd/plugins/python.conf',
     group  => '0',
     mode   => '0644',
     owner  => '0',
