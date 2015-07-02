@@ -2,6 +2,7 @@
 class collectd::plugin::elasticsearch
 {
 
+  include collectd::plugin::python
   file { '/usr/local/collectd-plugins/elasticsearch.py':
     ensure => 'file',
     group  => 'root',
