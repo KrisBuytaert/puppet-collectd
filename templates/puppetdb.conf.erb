@@ -1,0 +1,10 @@
+LoadPlugin curl_json
+
+<Plugin curl_json>
+  <URL "http://<%= @listen_ip %>:8080/v2/metrics/mbean/java.lang:type=Memory">
+    Instance puppetdb_jvm_heap_memory
+    <Key "/HeapMemoryUsage/used">
+      Type "gauge"
+    </Key>
+  </URL>
+</Plugin>
