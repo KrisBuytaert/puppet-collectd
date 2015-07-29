@@ -1,3 +1,0 @@
-[submodule "files/collectd-carbon"]
-	path = files/collectd-carbon
-	url = ssh://git@redmine.inuits.eu:2223/puppetmaster/modules/collectd-carbon.git
