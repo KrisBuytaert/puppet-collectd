@@ -3,12 +3,6 @@ class collectd::plugin::generic_jmx_solr(
   $engine  = "tomcat",
 ){
 
-  file { '/lib64/libjvm.so':
-    ensure => 'link',
-    target => '/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.79.x86_64/jre/lib/amd64/server/libjvm.so',
-    notify => Service['collectd'],
-  }
-
   file { '/etc/collectd.d/generic_jmx_solr.conf':
     ensure  => 'file',
     group   => 'root',
