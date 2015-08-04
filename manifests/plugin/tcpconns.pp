@@ -15,10 +15,11 @@ class collectd::plugin::tcpconns (
     validate_array($remoteports)
   }
 
-  collectd::plugin {'tcpconns':
-    ensure   => $ensure,
-    content  => template('collectd/tcpconns.conf.erb'),
-    interval => $interval,
-    notify   => Service['collectd'],
+  file { '/etc/collectd.d/tcpconns.conf':
+    content => template('collectd/tcpconns.conf.erb'),
+    group   => '0',
+    mode    => '0644',
+    owner   => '0',
+    notify  => Service['collectd'],
   }
 }
