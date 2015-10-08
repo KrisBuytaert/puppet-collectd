@@ -1,5 +1,5 @@
 class collectd::plugin::generic_jmx_solr(
-  $domain  = "solr/",
+  $beans_domain  = "solr/",
   $engine  = "tomcat",
 ){
 
