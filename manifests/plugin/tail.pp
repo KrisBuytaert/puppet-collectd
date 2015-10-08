@@ -45,11 +45,11 @@ class collectd::plugin::tail (
   $tail_type          = undef,
 ) inherits ::collectd::params {
 
-  file { "${config_dir}/tail.conf":
+  file { "${::collectd::params::config_dir}/tail.conf":
     group   => '0',
     owner   => '0',
     mode    => '0644',
     content => template('collectd/tail.conf.erb'),
-    notify  => Service[$service_name],
+    notify  => Service[$::collectd::params::service_name],
   }
 }
