@@ -1,0 +1,32 @@
+LoadPlugin varnish
+
+<Plugin "varnish">
+  <Instance>
+    CollectCache        <% if @collectCache %>true<% else %>false<% end %>
+    CollectConnections  <% if @collectConnections %>true<% else %>false<% end %>
+    CollectBackend      <% if @collectBackend %>true<% else %>false<% end %>
+    CollectSHM          <% if @collectSHM %>true<% else %>false<% end %>
+    CollectESI          <% if @collectESI %>true<% else %>false<% end %>
+    CollectFetch        <% if @collectFetch %>true<% else %>false<% end %>
+    CollectHCB          <% if @collectHCB %>true<% else %>false<% end %>
+    CollectSMS          <% if @collectSMS %>true<% else %>false<% end %>
+    CollectTotals       <% if @collectTotals %>true<% else %>false<% end %>
+    CollectWorkers      <% if @collectWorkers %>true<% else %>false<% end %>
+    CollectObjects      <% if @collectObjects %>true<% else %>false<% end %>
+    CollectSession      <% if @collectSession %>true<% else %>false<% end %>
+    CollectStruct       <% if @collectStruct %>true<% else %>false<% end %>
+    CollectUptime       <% if @collectUptime %>true<% else %>false<% end %>
+    CollectVCL          <% if @collectVCL %>true<% else %>false<% end %>
+    <%- if scope.lookupvar('collectd::plugin::varnish::version').to_i <= 2 -%>
+    # Varnish 2 only
+    CollectPurge        <% if @collectPurge %>true<% else %>false<% end %>
+    CollectSMA          <% if @collectSMA %>true<% else %>false<% end %>
+    CollectSM           <% if @collectSM %>true<% else %>false<% end %>
+    <%- end -%>
+    <%- if scope.lookupvar('collectd::plugin::varnish::version').to_i >= 3 -%>
+    # Varnish 3 only
+    CollectBan          <% if @collectBan %>true<% else %>false<% end %>
+    CollectDirectorDNS  <% if @collectDirectorDNS %>true<% else %>false<% end %>
+    <%- end -%>
+  </Instance>
+</Plugin>

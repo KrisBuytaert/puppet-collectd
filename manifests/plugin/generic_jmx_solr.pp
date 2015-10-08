@@ -1,6 +1,6 @@
 class collectd::plugin::generic_jmx_solr(
-  $domain  = "solr/",
-  $engine  = "tomcat",
+  $domain  = 'solr/',
+  $engine  = 'tomcat',
 ){
 
   file { '/etc/collectd.d/generic_jmx_solr.conf':
@@ -12,51 +12,51 @@ class collectd::plugin::generic_jmx_solr(
     notify  => Service['collectd'],
   }
 
-  if $operatingsystem == 'CentOS'{
+  if $::operatingsystem == 'CentOS'{
     package{'collectd-java':
       ensure  => 'present',
     }
   }
 
-  file_line { 
+  file_line {
     'custom.types.db-errors':
       path    => '/usr/share/collectd/types.db',
-      line    => 'errors		value:GAUGE:0:U', 
+      line    => 'errors    value:GAUGE:0:U',
       require => Package['collectd'],
       notify  => Service['collectd'];
-   'custom.types.db-timeouts':
+    'custom.types.db-timeouts':
       path    => '/usr/share/collectd/types.db',
-      line    => 'timeouts		value:GAUGE:0:U', 
+      line    => 'timeouts    value:GAUGE:0:U',
       require => Package['collectd'],
       notify  => Service['collectd'];
-   'custom.types.db-hits':
+    'custom.types.db-hits':
       path    => '/usr/share/collectd/types.db',
-      line    => 'hits		value:GAUGE:0:U', 
+      line    => 'hits    value:GAUGE:0:U',
       require => Package['collectd'],
       notify  => Service['collectd'];
-   'custom.types.db-hitratio':
+    'custom.types.db-hitratio':
       path    => '/usr/share/collectd/types.db',
-      line    => 'hitratio		value:GAUGE:0:U', 
+      line    => 'hitratio    value:GAUGE:0:U',
       require => Package['collectd'],
       notify  => Service['collectd'];
-   'custom.types.db-evictions':
+    'custom.types.db-evictions':
       path    => '/usr/share/collectd/types.db',
-      line    => 'evictions		value:GAUGE:0:U', 
+      line    => 'evictions   value:GAUGE:0:U',
       require => Package['collectd'],
       notify  => Service['collectd'];
-   'custom.types.db-lookups':
+    'custom.types.db-lookups':
       path    => '/usr/share/collectd/types.db',
-      line    => 'lookups		value:GAUGE:0:U', 
+      line    => 'lookups   value:GAUGE:0:U',
       require => Package['collectd'],
       notify  => Service['collectd'];
-   'custom.types.db-inserts':
+    'custom.types.db-inserts':
       path    => '/usr/share/collectd/types.db',
-      line    => 'inserts		value:GAUGE:0:U', 
+      line    => 'inserts   value:GAUGE:0:U',
       require => Package['collectd'],
       notify  => Service['collectd'];
-   'custom.types.db-jmx_memory':
+    'custom.types.db-jmx_memory':
       path    => '/usr/share/collectd/types.db',
-      line    => 'jmx_memory		value:GAUGE:0:U',
+      line    => 'jmx_memory    value:GAUGE:0:U',
       require => Package['collectd'],
       notify  => Service['collectd'];
     'custom.types.db-numDocs':
@@ -69,5 +69,5 @@ class collectd::plugin::generic_jmx_solr(
       line    => 'size    value:GAUGE:0:U',
       require => Package['collectd'],
       notify  => Service['collectd'];
-   } 
- }
+  }
+}

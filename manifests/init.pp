@@ -74,7 +74,7 @@ class collectd (
 
   service{$service_name:
     ensure  => $service_ensure,
-    enable  => $service_enable,
+    enable  => $::collectd::params::service_enable,
     require => Package[$pkgname],
   }
 
