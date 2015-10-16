@@ -1,4 +1,4 @@
-class collectd::plugins::haproxy_py {
+class collectd::plugin::haproxy_py {
 	
 	file { '/etc/collectd.d/haproxy_py.conf':
     ensure => 'file',
