@@ -5,6 +5,10 @@ class collectd::plugin::mysql(
   $password = '',
 ){
 
+  package { 'MySQL-python':
+    ensure => present,
+  }
+
   File{
     ensure => present,
     group  => 'root',
