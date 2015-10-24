@@ -1,4 +1,4 @@
-class collectd::plugin::mysql (
+class collectd::plugin::mysql {
 
   package {'collectd-mysql':
     ensure => 'present',
