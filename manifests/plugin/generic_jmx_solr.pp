@@ -1,6 +1,6 @@
 class collectd::plugin::generic_jmx_solr(
-  $domain  = 'solr/',
-  $engine  = 'tomcat',
+  $beans_domain  = "solr/",
+  $engine  = "tomcat",
 ){
 
   file { '/etc/collectd.d/generic_jmx_solr.conf':

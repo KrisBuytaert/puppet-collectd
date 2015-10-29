@@ -177,7 +177,7 @@ LoadPlugin "java"
 
 
     <MBean "solr/BinaryUpdateHandler">
-	ObjectName "<%= @domain %>:id=org.apache.solr.handler.BinaryUpdateRequestHandler,type=org*" 	
+	ObjectName "<%= @beans_domain %>:id=org.apache.solr.handler.BinaryUpdateRequestHandler,type=org*" 	
 	#InstancePrefix "BinaryUpdateReq"
         #InstanceFrom "type"
 	
@@ -222,7 +222,7 @@ LoadPlugin "java"
     </MBean>
 #--------------------------------------------------------------------------------------------------
      <MBean "solr/DumpRequestHandler">
-	ObjectName "<%= @domain %>:id=org.apache.solr.handler.DumpRequestHandler,type=org*" 	
+	ObjectName "<%= @beans_domain %>:id=org.apache.solr.handler.DumpRequestHandler,type=org*" 	
 	#InstancePrefix "DumpRequest"
 	#InstanceFrom "type"
 	
@@ -267,7 +267,7 @@ LoadPlugin "java"
     </MBean>
 #--------------------------------------------------------------------------------------------------
       <MBean "solr/PingRequestHandler">
-	ObjectName "<%= @domain %>:id=org.apache.solr.handler.PingRequestHandler,type=org.*" 	
+	ObjectName "<%= @beans_domain %>:id=org.apache.solr.handler.PingRequestHandler,type=org.*" 	
 	#InstancePrefix "PingRequest"
 	#InstanceFrom "type"
 	
@@ -312,7 +312,7 @@ LoadPlugin "java"
     </MBean>
  #--------------------------------------------------------------------------------------------------
        <MBean "solr/XmlUpdateRequestHandler">
-	ObjectName "<%= @domain %>:id=org.apache.solr.handler.XmlUpdateRequestHandler,type=org.*" 	
+	ObjectName "<%= @beans_domain %>:id=org.apache.solr.handler.XmlUpdateRequestHandler,type=org.*" 	
 	#InstancePrefix "XMLRequest"
 	#InstanceFrom "type"
 	
@@ -357,7 +357,7 @@ LoadPlugin "java"
     </MBean>
  #--------------------------------------------------------------------------------------------------
        <MBean "solr/componentSearchHandler">
-	ObjectName "<%= @domain %>:id=org.apache.solr.handler.component.SearchHandler,type=org.apache.solr.handler.component.SearchHandler*" 	
+	ObjectName "<%= @beans_domain %>:id=org.apache.solr.handler.component.SearchHandler,type=org.apache.solr.handler.component.SearchHandler*" 	
 	#InstancePrefix "SearchHandler"
 	#InstanceFrom "type"
 	
@@ -402,7 +402,7 @@ LoadPlugin "java"
     </MBean>
  #--------------------------------------------------------------------------------------------------
         <MBean "solr/fieldCache">
-    ObjectName "<%= @domain %>:id=org.apache.solr.search.SolrFieldCacheMBean,type=fieldCache"
+    ObjectName "<%= @beans_domain %>:id=org.apache.solr.search.SolrFieldCacheMBean,type=fieldCache"
 
       <Value>
   Type "gauge"
@@ -415,7 +415,7 @@ LoadPlugin "java"
 #--------------------------------------------------------------------------------------------------
 
   <MBean "solr/LRUcacheDocumentCache">
-  ObjectName "<%= @domain %>:id=org.apache.solr.search.LRUCache,type=documentCache"
+  ObjectName "<%= @beans_domain %>:id=org.apache.solr.search.LRUCache,type=documentCache"
       
       <Value>
   Type "evictions"
@@ -497,7 +497,7 @@ LoadPlugin "java"
       </MBean>
 #--------------------------------------------------------------------------------------------------
     <MBean "solr/LRUcacheQueryResultCache">
-  ObjectName "<%= @domain %>:id=org.apache.solr.search.LRUCache,type=queryResultCache"
+  ObjectName "<%= @beans_domain %>:id=org.apache.solr.search.LRUCache,type=queryResultCache"
       
       <Value>
   Type "evictions"
@@ -579,7 +579,7 @@ LoadPlugin "java"
       </MBean>
 #--------------------------------------------------------------------------------------------------
       <MBean "solr/indexSearcher">
-        ObjectName "<%= @domain %>:id=org.apache.solr.search.SolrIndexSearcher,type=searcher"
+        ObjectName "<%= @beans_domain %>:id=org.apache.solr.search.SolrIndexSearcher,type=searcher"
 
           <Value>
       Type "docs"
@@ -598,7 +598,7 @@ LoadPlugin "java"
       </MBean>
 #--------------------------------------------------------------------------------------------------
       <MBean "solr/searchHandler_select">
-        ObjectName "<%= @domain %>:id=org.apache.solr.handler.component.SearchHandler,type=/select"
+        ObjectName "<%= @beans_domain %>:id=org.apache.solr.handler.component.SearchHandler,type=/select"
 
       <Value>
   Type "requests"
@@ -642,7 +642,7 @@ LoadPlugin "java"
 
 #--------------------------------------------------------------------------------------------------
       <MBean "solr/updateHandler">
-        ObjectName "<%= @domain %>:id=org.apache.solr.update.DirectUpdateHandler2,type=updateHandler"
+        ObjectName "<%= @beans_domain %>:id=org.apache.solr.update.DirectUpdateHandler2,type=updateHandler"
 
       <Value>
   Type "docs"
