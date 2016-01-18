@@ -1,0 +1,23 @@
+LoadPlugin postgresql
+
+<Plugin postgresql>
+<Query tps>
+Statement "SELECT datname, \
+xact_commit + xact_rollback AS tps \
+FROM pg_stat_database"
+<Result>
+Type counter
+InstancePrefix "TPS"
+InstancesFrom "datname"
+ValuesFrom "tps"
+</Result>
+</Query>
+
+<Database <%= @dbname %>>
+Host "localhost"
+User <%= @dbuser %>
+Password "<%= @dbpass %>"
+Query tps
+</Database>
+</Plugin>
+
