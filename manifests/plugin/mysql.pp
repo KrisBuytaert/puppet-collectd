@@ -3,6 +3,7 @@ class collectd::plugin::mysql(
   $host = '127.0.0.1',
   $user = 'root',
   $password = '',
+  $manage_config = true,
 ){
 
   package { 'MySQL-python':
@@ -20,10 +21,12 @@ class collectd::plugin::mysql(
     source => 'puppet:///modules/collectd/plugin/mysql.py',
   }
 
-  file { '/etc/collectd.d/mysql.conf':
-    content => template('collectd/mysql.conf.erb'),
-    require => File['/usr/local/collectd-plugins/mysql.py'],
-    notify  => Service['collectd'],
+  if $manage_config {
+    file { '/etc/collectd.d/mysql.conf':
+      content => template('collectd/mysql.conf.erb'),
+      require => File['/usr/local/collectd-plugins/mysql.py'],
+      notify  => Service['collectd'],
+    }
   }
 
 }
