@@ -23,7 +23,7 @@ class collectd::plugin::mysql(
 
   if $manage_config {
     file { '/etc/collectd.d/mysql.conf':
-      content => template('collectd/mysql.conf.erb'),
+      content => template('collectd/plugin/mysql.conf.erb'),
       require => File['/usr/local/collectd-plugins/mysql.py'],
       notify  => Service['collectd'],
     }

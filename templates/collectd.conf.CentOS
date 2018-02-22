@@ -95,7 +95,7 @@ LoadPlugin cpu
 #LoadPlugin curl_json
 #LoadPlugin curl_xml
 #LoadPlugin dbi
-LoadPlugin df
+#LoadPlugin df
 #LoadPlugin disk
 #LoadPlugin dns
 #LoadPlugin email
@@ -176,7 +176,7 @@ LoadPlugin swap
 #LoadPlugin uuid
 #LoadPlugin varnish
 ##LoadPlugin mic
-LoadPlugin vmem
+#LoadPlugin vmem
 #LoadPlugin vserver
 #LoadPlugin wireless
 #LoadPlugin write_graphite

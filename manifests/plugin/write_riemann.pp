@@ -12,8 +12,7 @@ class collectd::plugin::write_riemann($riemannhost = '127.0.0.1')
       owner   => '0',
       require => Package['collectd'],
       notify  => Service[$::collectd::params::service_name],
-      content => template('collectd/write_riemann.conf.erb');
+      content => template('collectd/plugin/write_riemann.conf.erb');
   }
 
 }
-

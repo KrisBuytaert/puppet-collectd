@@ -3,7 +3,7 @@ class collectd::plugin::puppetdb(
 )
 {
   file { '/etc/collectd.d/puppetdb.conf':
-    content => template('collectd/puppetdb.conf.erb'),
+    content => template('collectd/plugin/puppetdb.conf.erb'),
     group   => '0',
     mode    => '0644',
     owner   => '0',

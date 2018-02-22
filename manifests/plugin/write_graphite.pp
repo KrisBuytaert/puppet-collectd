@@ -7,7 +7,7 @@ class collectd::plugin::write_graphite ( $graphitehost, $graphiteport) {
       owner   => '0',
       require => Package['collectd'],
       notify  => Service['collectd'],
-      content => template('collectd/write_graphite.conf.erb');
+      content => template('collectd/plugin/write_graphite.conf.erb');
   }
 
 }

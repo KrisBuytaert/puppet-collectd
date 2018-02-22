@@ -37,7 +37,7 @@ class collectd::plugin::graphitewriter ( $graphitehost, $graphiteport) {
       owner   => '0',
       require => Package['collectd'],
       notify  => Service['collectd'],
-      content => template('collectd/graphite-writer.conf.erb');
+      content => template('collectd/plugin/graphite-writer.conf.erb');
   }
 
 }

@@ -7,7 +7,7 @@ class collectd::plugin::ntpd(
 {
 
   file { '/etc/collectd.d/ntpd.conf':
-    content => template('collectd/ntpd.conf.erb'),
+    content => template('collectd/plugin/ntpd.conf.erb'),
     group   => '0',
     mode    => '0644',
     owner   => '0',

@@ -8,7 +8,7 @@ class collectd::plugin::generic_jmx_solr(
     group   => 'root',
     mode    => '0644',
     owner   => 'root',
-    content => template('collectd/generic_jmx_solr.conf.erb'),
+    content => template('collectd/plugin/generic_jmx_solr.conf.erb'),
     notify  => Service['collectd'],
   }
 

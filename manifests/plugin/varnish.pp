@@ -27,7 +27,7 @@ class collectd::plugin::varnish (
   }
 
   file { '/etc/collectd.d/varnish.conf':
-    content => template('collectd/varnish.conf.erb'),
+    content => template('collectd/plugin/varnish.conf.erb'),
     group   => '0',
     mode    => '0644',
     owner   => '0',

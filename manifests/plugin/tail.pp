@@ -49,7 +49,7 @@ class collectd::plugin::tail (
     group   => '0',
     owner   => '0',
     mode    => '0644',
-    content => template('collectd/tail.conf.erb'),
+    content => template('collectd/plugin/tail.conf.erb'),
     notify  => Service[$::collectd::params::service_name],
   }
 }

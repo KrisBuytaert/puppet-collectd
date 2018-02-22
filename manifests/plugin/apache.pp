@@ -35,7 +35,7 @@ class collectd::plugin::apache(
   }
 
   file { '/etc/collectd.d/apache.conf':
-    content => template('collectd/apache.conf.erb'),
+    content => template('collectd/plugin/apache.conf.erb'),
     group   => '0',
     mode    => '0644',
     owner   => '0',

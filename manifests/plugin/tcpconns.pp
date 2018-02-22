@@ -16,7 +16,7 @@ class collectd::plugin::tcpconns (
   }
 
   file { '/etc/collectd.d/tcpconns.conf':
-    content => template('collectd/tcpconns.conf.erb'),
+    content => template('collectd/plugin/tcpconns.conf.erb'),
     group   => '0',
     mode    => '0644',
     owner   => '0',

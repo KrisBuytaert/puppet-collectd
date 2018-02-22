@@ -24,7 +24,7 @@ class collectd::plugin::postgres (
     owner   => '0',
     require => [ Package['collectd'],Package['collectd-postgresql'] ],
     notify  => Service['collectd'],
-    content =>  template('collectd/postgres.conf.erb'),
+    content =>  template('collectd/plugin/postgres.conf.erb'),
   }
 
   package {'collectd-postgresql': ensure =>present }
