@@ -176,7 +176,7 @@ LoadPlugin swap
 #LoadPlugin uuid
 #LoadPlugin varnish
 ##LoadPlugin mic
-LoadPlugin vmem
+#LoadPlugin vmem
 #LoadPlugin vserver
 #LoadPlugin wireless
 #LoadPlugin write_graphite
