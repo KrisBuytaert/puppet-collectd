@@ -15,7 +15,7 @@ class collectd::plugin::nginx(
   }
 
   file { '/etc/collectd.d/nginx.conf':
-    content => template('collectd/nginx.conf.erb'),
+    content => template('collectd/plugin/nginx.conf.erb'),
     group   => '0',
     mode    => '0644',
     owner   => '0',

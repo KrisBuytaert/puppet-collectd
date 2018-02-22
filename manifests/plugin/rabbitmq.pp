@@ -44,7 +44,7 @@ class collectd::plugin::rabbitmq{
   }
 
   file { '/etc/collectd.d/RabbitMQ.conf':
-    content => template('collectd/RabbitMQ.conf.erb'),
+    content => template('collectd/plugin/RabbitMQ.conf.erb'),
     group   => '0',
     mode    => '0644',
     owner   => '0',
