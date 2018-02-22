@@ -1,0 +1,11 @@
+LoadPlugin df
+<Plugin df>
+  <% if @ignore_selected %>
+  IgnoreSelected true
+  <% else %>
+  IgnoreSelected false
+  <% end %>
+  <% @fs_types.each do |fstype| %>
+  FSType "<%= fstype %>"
+  <% end %>
+</Plugin>

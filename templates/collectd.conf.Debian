@@ -43,7 +43,7 @@ LoadPlugin cpu
 #LoadPlugin curl_json
 #LoadPlugin curl_xml
 #LoadPlugin dbi
-LoadPlugin df
+#LoadPlugin df
 LoadPlugin disk
 #LoadPlugin dns
 #LoadPlugin email
@@ -811,4 +811,3 @@ LoadPlugin users
 Include "/etc/collectd/filters.conf"
 Include "/etc/collectd/thresholds.conf"
 Include "/etc/collectd.d/*.conf"
-

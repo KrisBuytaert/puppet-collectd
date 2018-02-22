@@ -95,7 +95,7 @@ LoadPlugin cpu
 #LoadPlugin curl_json
 #LoadPlugin curl_xml
 #LoadPlugin dbi
-LoadPlugin df
+#LoadPlugin df
 #LoadPlugin disk
 #LoadPlugin dns
 #LoadPlugin email
